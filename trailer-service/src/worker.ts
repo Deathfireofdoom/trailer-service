@@ -29,7 +29,8 @@ async function initializeAndStartWorker() {
 
     // This is just for this project - make it easier to start etc.
     // we dont create queues like this in prod
-    await sleep(30000);
+    console.log("worker service is not ready yet, please wait")
+    await sleep(15000);
     await sqsService.ensureQueueExists();
 
     try {

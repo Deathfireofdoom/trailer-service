@@ -13,7 +13,7 @@ services:
       - AWS_ENDPOINT=http://localstack:4566
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=trailerdb
+      - POSTGRES_DB=dev
       - POSTGRES_HOST=postgres
       - POSTGRES_PORT=5432
       - REDIS_HOST=redis
@@ -29,7 +29,7 @@ services:
     build:
       context: ./trailer-service
     environment:
-      - TMDB_TOKEN= <INSERT YOUR TOKEN HERE>
+      - TMDB_TOKEN=<placeholder>
       - AWS_ACCESS_KEY_ID=test
       - AWS_SECRET_ACCESS_KEY=test
       - AWS_REGION=us-east-1
@@ -37,7 +37,7 @@ services:
       - AWS_ENDPOINT=http://localstack:4566
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=trailerdb
+      - POSTGRES_DB=dev
       - POSTGRES_HOST=postgres
       - POSTGRES_PORT=5432
     depends_on:
@@ -58,11 +58,13 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=trailerdb
+      - POSTGRES_DB=dev
     ports:
       - "5432:5432"
     volumes:
-      - ./tmp/postgres_data:/var/lib/postgresql/data
+      - ./tmp/postgres_data:/data
+      - ./config/pg_hba.conf:/data/pg_hba.conf
+    command: ["postgres", "-c", "hba_file=/var/lib/postgresql/data/pg_hba.conf"]
 
   redis:
     image: "redis:latest"

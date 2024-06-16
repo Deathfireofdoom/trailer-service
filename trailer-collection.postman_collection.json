@@ -1,0 +1,124 @@
+{
+	"info": {
+		"_postman_id": "cc226e2e-e771-426c-b99f-8ecb431cb875",
+		"name": "trailer-collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13362924"
+	},
+	"item": [
+		{
+			"name": "health",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/v1/health",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "migrate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/non-production/utils/migrate",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"non-production",
+						"utils",
+						"migrate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "publish-new-content",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"url\": \"https://content.viaplay.se/pc-se/film/arrival-2016\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/non-production/utils/publish",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"non-production",
+						"utils",
+						"publish"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fetch-trailer",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/v1/trailer/?url=https://content.viaplay.se/pc-se/film/arrival-2016",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"trailer",
+						""
+					],
+					"query": [
+						{
+							"key": "url",
+							"value": "https://content.viaplay.se/pc-se/film/arrival-2016"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

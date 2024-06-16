@@ -23,5 +23,5 @@ export const SQS_QUEUE_URL = `${AWS_ENDPOINT}/${AWS_ACCOUNT_ID}/${SQS_QUEUE_NAME
 
 // TMDB - This probably should be fetched from some kind of secret store instead on startup
 //        that way we can more easy rotate the key. 
-export const TMDB_TOKEN = process.env.TMDB_TOKEN || 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1MDQzZTc4YmJiMTZiYzk0MzZmNjhlYzIzYzJmZTQ3ZSIsInN1YiI6IjY2NmQ4MWNhMTJmYmViMDMyMzMxYjBjYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.sVypriXEhySEA4Z9QBX0aqNsVrGXe5I4rTjVhcA37fw'
+export const TMDB_TOKEN = process.env.TMDB_TOKEN
 export const TMDB_BASE_URL = process.env.TMDB_BASE_URL || 'https://api.themoviedb.org'
