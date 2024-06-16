@@ -1,0 +1,72 @@
+version: '3.8'
+
+services:
+  trailer-api:
+    build:
+      context: ./trailer-api
+    environment:
+      - PORT=3000
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      - AWS_REGION=us-east-1
+      - LOCALSTACK_HOSTNAME=localstack
+      - AWS_ENDPOINT=http://localstack:4566
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=trailerdb
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    ports:
+      - "3000:3000"
+    depends_on:
+      - localstack
+      - postgres
+      - redis
+
+  trailer-service:
+    build:
+      context: ./trailer-service
+    environment:
+      - TMDB_TOKEN= <INSERT YOUR TOKEN HERE>
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      - AWS_REGION=us-east-1
+      - LOCALSTACK_HOSTNAME=localstack
+      - AWS_ENDPOINT=http://localstack:4566
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=trailerdb
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+    depends_on:
+      - localstack
+      - postgres
+  
+  # Infrastructure
+  localstack:
+    image: localstack/localstack:latest
+    environment:
+      - SERVICES=sqs
+    ports:
+      - "4566:4566"  # edge port
+      - "4571:4571"  # sqs
+
+  postgres:
+    image: "postgres:latest"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=trailerdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./tmp/postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: "redis:latest"
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./tmp/redis_data:/data
