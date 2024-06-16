@@ -27,18 +27,18 @@ class TMDBService {
         }
     }
 
-    private async getIdByExternalId(externalId: string, externalSource: string): Promise<Number> {
+    private async getIdByExternalId(externalId: string, externalSource: string): Promise<number> {
         const url = `${TMDB_BASE_URL}/3/find/${externalId}?external_source=${externalSource}`;
         const data = await this.httpService.fetchUrl(url, this.headers);
         
         if (data.movie_results && data.movie_results.length > 0) {
-            return data.movie_results[0].id;
+            return data.movie_results[0].id
         } else {
             throw new Error("No results found");
         }
     } 
 
-    private async getTrailerUrlsById(id: Number): Promise<string[]> {
+    private async getTrailerUrlsById(id: number): Promise<string[]> {
         const url = `${TMDB_BASE_URL}/3/movie/${id}/videos`;
         const data = await this.httpService.fetchUrl(url, this.headers);
 

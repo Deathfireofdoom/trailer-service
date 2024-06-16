@@ -17,7 +17,7 @@ class TrailerService {
         this.databaseService = databaseService;
     }
 
-    public async handleNewContent(message: NewContentMessage): Promise<Boolean> {
+    public async handleNewContent(message: NewContentMessage): Promise<boolean> {
         try {
             // get the imdb-id from viaplay
             const data = await this.httpService.fetchUrl(message.url);

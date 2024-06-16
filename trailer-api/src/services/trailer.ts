@@ -27,7 +27,7 @@ class TrailerService {
         const urlHash = hashUrl(viaplayUrl);
         const cacheKey = `trailer:${urlHash}`;
        
-        let trailerUrls = await this.cacheService.get(cacheKey);
+        const trailerUrls = await this.cacheService.get(cacheKey);
 
         if (trailerUrls) {
             return JSON.parse(trailerUrls);

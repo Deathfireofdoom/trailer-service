@@ -1,5 +1,5 @@
 
-export const validateUrl = (url: string): Boolean => {
+export const validateUrl = (url: string): boolean => {
     const baseUrl = 'https://content.viaplay.se/pc-se/film/';
     if (!url.startsWith(baseUrl)) {
         return false;

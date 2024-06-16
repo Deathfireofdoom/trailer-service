@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import TrailerService from "../services/trailer";
 import { sqsClient } from '../clients/sqs';
-import { SendMessageCommand, CreateQueueCommand } from '@aws-sdk/client-sqs';
-import { SQS_QUEUE_URL, SQS_QUEUE_NAME } from '../config/config';
+import { SendMessageCommand } from '@aws-sdk/client-sqs';
+import { SQS_QUEUE_URL } from '../config/config';
 
 // This files contains utils-functions, these functions is not 
 // "part" of the system. Instead they help with setting up
