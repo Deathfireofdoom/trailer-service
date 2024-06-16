@@ -29,7 +29,7 @@ async function initializeAndStartWorker() {
 
     // This is just for this project - make it easier to start etc.
     // we dont create queues like this in prod
-    await sleep(1000);
+    await sleep(30000);
     await sqsService.ensureQueueExists();
 
     try {
